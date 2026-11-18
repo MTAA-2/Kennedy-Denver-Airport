@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DEN TSA Page, Businesslike</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&amp;family=Source+Serif+4:opsz,wght@8..60,600;8..60,700&amp;display=swap" rel="stylesheet">
+<style>
+:root {
+  /* Businesslike option, brighter: white paper, navy ink, royal-blue action color, amber highlights, sky-blue bands. Layout: blue hero band with summary panel, banded section headings, one complete form. */
+  --paper: #ffffff;
+  --ink: #10224a;
+  --muted: #45557a;
+  --accent: #1f5fe0;
+  --accent-dark: #1648b0;
+  --amber: #ffb703;
+  --amber-soft: #ffe7a8;
+  --sky: #e3eeff;
+  --sky-deep: #c9dcff;
+  --opt: #eef4ff;
+  --opt-line: #b8cdf2;
+  --tint: #f4f7fd;
+  --rule: #d3ddee;
+  --error: #b42318;
+  --font-display: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--paper); color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.55; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+.topbar { border-bottom: 1px solid var(--rule); }
+.topbar .wrap { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 52px; }
+.firm { font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: 13px; }
+.topbar a { font-weight: 600; text-decoration: none; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+.hero-band { background: var(--sky); border-bottom: 4px solid var(--amber); }
+.hero { display: grid; gap: 22px; padding: 26px 0 30px; }
+h1 mark {
+  color: inherit;
+  margin: 0 -.18em;
+  padding: .02em .3em .06em;
+  border-radius: .8em .3em .9em .35em / .45em .8em .35em .7em;
+  background:
+    linear-gradient(100deg, rgba(255, 210, 50, 0) .8%, rgba(255, 210, 50, .9) 2.6%, rgba(255, 220, 80, .72) 6%, rgba(255, 220, 80, .42) 92%, rgba(255, 210, 50, .82) 96.5%, rgba(255, 210, 50, 0) 99%),
+    linear-gradient(181deg, rgba(255, 210, 50, 0) 0%, rgba(255, 210, 50, .35) 12%, rgba(255, 210, 50, 0) 26%),
+    linear-gradient(178deg, rgba(255, 210, 50, 0) 64%, rgba(255, 200, 30, .38) 82%, rgba(255, 210, 50, 0) 98%);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+h1 { font-family: var(--font-display); font-weight: 700; font-size: clamp(34px, 8.6vw, 54px); line-height: 1.06; margin: 0; letter-spacing: -.01em; text-wrap: balance; }
+.sub { font-size: 20px; line-height: 1.45; margin: 12px 0 0; max-width: 34ch; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; width: 100%; padding: 14px 26px; border: 0; border-radius: 6px; background: var(--accent); color: #fff; font: inherit; font-weight: 600; font-size: 19px; text-decoration: none; cursor: pointer; }
+.btn:hover { background: var(--accent-dark); }
+.btn[disabled] { opacity: .75; cursor: wait; }
+.btn svg { width: 20px; height: 20px; stroke: currentColor; fill: none; stroke-width: 2; }
+.hero .btn { margin-top: 20px; }
+.meta { margin: 10px 0 0; color: var(--muted); font-size: 15px; }
+
+.summary { border: 1px solid var(--sky-deep); background: var(--paper); border-radius: 10px; overflow: hidden; box-shadow: 0 6px 18px rgba(16, 34, 74, .08); }
+.summary h2 { margin: 0; padding: 12px 18px; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--ink); background: var(--amber-soft); border-bottom: 1px solid #f2d27a; font-weight: 700; }
+.summary dl { margin: 0; display: grid; grid-template-columns: 96px 1fr; }
+.summary dt, .summary dd { margin: 0; padding: 11px 18px; border-bottom: 1px solid var(--rule); }
+.summary dt { font-weight: 700; font-size: 15px; }
+.summary dd { font-size: 16px; }
+.summary dl > :nth-last-child(-n+2) { border-bottom: 0; }
+
+.block { padding: 30px 0; }
+.block h2 { font-family: var(--font-display); font-size: 28px; line-height: 1.2; margin: 0 0 12px; background: var(--sky); color: var(--ink); padding: 10px 16px; border-radius: 8px; }
+.block h2.amber { background: var(--amber-soft); }
+.lede { margin: 0; max-width: 62ch; color: var(--muted); }
+.timebar { margin: 22px 0 6px; }
+.tb-labels { display: grid; grid-template-columns: 68% 1fr; gap: 6px; margin-bottom: 6px; }
+.tb-labels span { display: flex; align-items: center; justify-content: center; min-height: 40px; border-radius: 8px; font-size: 18px; font-weight: 700; letter-spacing: .02em; text-align: center; }
+.tb-unpaid { background: #fde2de; color: #b42318; border: 1px solid #f4b5ac; margin-right: -3px; }
+.tb-paid { background: #d9f2e5; color: #0f5c3a; border: 1px solid #a8dcc0; margin-left: 3px; }
+.tb-row { display: flex; align-items: stretch; min-height: 70px; border-radius: 10px; border: 1px solid var(--rule); position: relative; }
+.seg { display: flex; align-items: center; justify-content: center; text-align: center; padding: 8px 5px; font-size: clamp(16px, 4.6vw, 20px); font-weight: 600; line-height: 1.15; color: var(--ink); }
+.s1 { flex: 0 0 20%; background: #fff3cf; border-radius: 9px 0 0 9px; }
+.s2 { flex: 0 0 26%; background: var(--amber-soft); }
+.s3 { flex: 0 0 22%; background: #ffd77a; }
+.s4 { flex: 1; background: var(--sky-deep); color: var(--accent-dark); border-radius: 0 9px 9px 0; }
+.clock { position: absolute; left: 68%; top: -4px; bottom: -4px; width: 3px; background: var(--ink); font-size: 0; }
+.clock::after { content: "Clock in"; position: absolute; top: calc(100% + 6px); left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 13px; font-weight: 700; color: var(--ink); background: var(--paper); padding: 1px 8px; border: 1px solid var(--ink); border-radius: 999px; }
+.timebar { padding-bottom: 34px; }
+.seq { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 0; border-top: 1px solid var(--rule); }
+.seq li { display: grid; grid-template-columns: 44px 1fr; gap: 12px; align-items: start; padding: 14px 0; border-bottom: 1px solid var(--rule); }
+.seq .num { font-family: var(--font-display); font-weight: 700; font-size: 20px; color: var(--ink); background: var(--amber); width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-variant-numeric: tabular-nums; }
+.seq strong { display: block; font-size: 18px; }
+.seq span.d { color: var(--muted); font-size: 16px; }
+.legal-note { margin: 16px 0 0; padding: 14px 16px; border-radius: 8px; background: #dff5ec; color: #0f3d2e; font-weight: 600; }
+.secondary { margin: 14px 0 0; color: var(--muted); font-size: 16px; }
+
+/* form */
+#review { scroll-margin-top: 10px; }
+.form-head { display: block; }
+.form-head .meta { margin: 0; }
+form { margin-top: 18px; }
+.q { border: 0; margin: 0; padding: 16px 0 16px 48px; border-top: 1px solid var(--rule); min-width: 0; position: relative; display: block; }
+.q .qn { position: absolute; left: 0; top: 16px; width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: #fff; display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; font-size: 18px; }
+.q legend { float: left; width: 100%; padding: 0; font-weight: 700; font-size: 18px; margin: 0; }
+.q .qbody { clear: both; }
+.q .help { color: var(--muted); font-size: 15px; margin: 2px 0 0; }
+.opts { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; margin-top: 10px; clear: both; }
+.opt { display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 10px 14px; border: 1px solid var(--opt-line); border-radius: 8px; background: var(--opt); cursor: pointer; font-size: 16px; font-weight: 500; }
+.opt:hover { border-color: var(--accent); }
+.opt input { width: 20px; height: 20px; accent-color: var(--accent); flex: 0 0 20px; margin: 0; }
+.opt:has(input:checked) { border-color: var(--accent); background: var(--sky-deep); font-weight: 600; }
+.txt { background: var(--tint); }
+select, .txt { width: 100%; min-height: 50px; font: inherit; font-size: 17px; padding: 10px 12px; border: 1px solid #a9b6c8; border-radius: 6px; color: var(--ink); }
+select { margin-top: 10px; max-width: 420px; }
+select:focus, .txt:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px rgba(31, 95, 224, .22); }
+.txt:disabled { background: var(--tint); color: #8592a6; }
+.ql { display: block; font-weight: 700; font-size: 18px; line-height: 1.35; padding-top: 4px; }
+select { appearance: none; -webkit-appearance: none; background-color: var(--opt) !important; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310224a' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; background-size: 20px; padding-right: 44px !important; border: 1px solid var(--opt-line) !important; border-radius: 8px !important; cursor: pointer; }
+select:invalid, select.empty { color: var(--muted); }
+.dd { margin-top: 10px; max-width: 420px; position: relative; }
+.dd summary { list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 50px; padding: 10px 14px; border: 1px solid var(--opt-line); border-radius: 8px; background: var(--opt); cursor: pointer; font-size: 17px; }
+.dd summary::-webkit-details-marker { display: none; }
+.dd summary::after { content: ""; flex: 0 0 20px; height: 20px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2310224a' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") center / 20px no-repeat; transition: transform .15s; }
+.dd[open] summary::after { transform: rotate(180deg); }
+.dd .dd-text { color: var(--muted); }
+.dd.has-value .dd-text { color: var(--ink); font-weight: 600; }
+.dd-panel { margin-top: 6px; border: 1px solid var(--opt-line); border-radius: 8px; background: var(--paper); padding: 6px; box-shadow: 0 10px 24px rgba(16, 34, 74, .12); display: grid; gap: 2px; }
+.dd-panel label { display: flex; align-items: center; gap: 10px; min-height: 46px; padding: 8px 10px; border-radius: 6px; font-size: 16px; cursor: pointer; }
+.dd-panel label:hover, .dd-panel label:has(input:checked) { background: var(--opt); }
+.dd-panel input { width: 20px; height: 20px; accent-color: var(--accent); flex: 0 0 20px; margin: 0; }
+.dd-done { margin: 4px 0 2px; min-height: 44px; border: 0; border-radius: 6px; background: var(--accent); color: #fff; font: inherit; font-weight: 600; cursor: pointer; }
+.invalid .dd summary { border-color: var(--error); }
+.contact { border-top: 1px solid var(--rule); padding: 20px 0 6px; }
+.contact h3 { margin: 0 0 4px; font-size: 18px; }
+.grid2 { display: grid; gap: 14px; margin-top: 12px; }
+.field label { display: block; font-weight: 600; font-size: 15px; margin-bottom: 6px; }
+.inline-check { display: inline-flex !important; align-items: center; gap: 8px; font-weight: 500 !important; margin-top: 8px; }
+.inline-check input, .consent input { width: 20px; height: 20px; accent-color: var(--accent); }
+.consent { display: flex; gap: 10px; align-items: flex-start; margin-top: 18px; font-size: 15px; }
+.consent input { margin-top: 3px; flex: 0 0 20px; }
+.fine { font-size: 14px; color: var(--muted); margin: 10px 0 0; }
+.err { color: var(--error); font-weight: 600; font-size: 15px; margin-top: 6px; }
+.err:empty { display: none; }
+.invalid .opt, .invalid select, .invalid .txt { border-color: var(--error); }
+.note { margin: 10px 0 0; padding: 10px 14px; background: #fff6e0; border: 1px solid #f0d58a; border-radius: 6px; font-weight: 500; }
+.submit-row { margin-top: 20px; }
+.form-status { margin-top: 14px; padding: 12px 14px; border-radius: 6px; font-weight: 500; }
+.form-status.error { background: #fdecea; border: 1px solid #f3b7b0; color: #7a1a12; }
+.config-flag { display: inline-block; margin-left: 6px; font-size: 12px; font-weight: 700; background: #fff6e0; color: #6b4e00; padding: 1px 6px; border-radius: 4px; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.success { border: 1px solid var(--rule); border-left: 4px solid #1d7a4f; background: #f1f8f4; padding: 18px 20px; border-radius: 6px; margin-top: 18px; }
+.success h3 { margin: 0 0 6px; font-family: var(--font-display); font-size: 24px; }
+.success p { margin: 0; }
+
+.next ol { margin: 14px 0 0; padding-left: 22px; display: grid; gap: 8px; }
+.next li { padding-left: 4px; }
+
+footer { padding: 24px 0 44px; font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+footer p { margin: 0 0 8px; max-width: 90ch; }
+footer strong { color: var(--ink); }
+
+@media (min-width: 760px) {
+  body { font-size: 18px; }
+  .hero { grid-template-columns: 1.25fr 1fr; align-items: center; gap: 40px; padding: 48px 0 44px; }
+  .btn { width: auto; }
+  .grid2 { grid-template-columns: 1fr 1fr; }
+  .seq { grid-template-columns: repeat(3, 1fr); border-top: 0; gap: 24px; }
+  .seq li { grid-template-columns: 44px 1fr; border: 1px solid var(--rule); border-radius: 10px; padding: 16px; background: var(--tint); }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <span class="firm">Kennedy Law Firm, LLP</span>
+    <a href="tel:+17134256445" aria-label="Call Kennedy Law Firm at 713-425-6445">713-425-6445</a>
+  </div>
+</header>
+
+<div class="hero-band">
+<div class="wrap">
+  <section class="hero">
+    <div>
+      <h1>Denver Airport Restaurant and Shop Workers: <mark>Unpaid TSA Screening?</mark></h1>
+      <p class="sub">Went through TSA security before clocking in? You may be owed wages for that time.</p>
+      <a class="btn" href="#review" data-goto-form>Request a Case Review <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <p class="meta">Five questions. About 2 minutes.</p>
+    </div>
+    <aside class="summary" aria-labelledby="sum-h">
+      <h2 id="sum-h">The issue</h2>
+      <dl>
+        <dt>Who</dt><dd>Restaurant, bar, and shop workers at DEN, any employer</dd>
+        <dt>Where</dt><dd>DEN, all concourses</dd>
+        <dt>What</dt><dd>Unpaid time in TSA lines and screening before clock-in</dd>
+        <dt>Possible claim</dt><dd>Wages for that time under Colorado law</dd>
+      </dl>
+    </aside>
+  </section>
+</div>
+</div>
+
+<main class="wrap">
+
+  <section class="block" aria-labelledby="time-h">
+    <h2 id="time-h">The unpaid time</h2>
+    <p class="lede">For many airport workers, the workday starts before the time clock does. Three steps might add time to every shift:</p>
+    <figure class="timebar" aria-label="Unpaid time? The TSA line, screening, and the trip to your post come before clock-in. Paid time starts at clock-in.">
+      <div class="tb-labels" aria-hidden="true"><span class="tb-unpaid">Unpaid Time?</span><span class="tb-paid">Paid</span></div>
+      <div class="tb-row" aria-hidden="true">
+        <span class="seg s1">TSA line</span><span class="seg s2">Screening</span><span class="seg s3">To your post</span><span class="clock">Clock in</span><span class="seg s4">Your shift</span>
+      </div>
+    </figure>
+    <ol class="seq">
+      <li><span class="num">1</span><span><strong>Waiting in the security line</strong><span class="d">Standing in the TSA line with your badge before work.</span></span></li>
+      <li><span class="num">2</span><span><strong>Passing through screening</strong><span class="d">Bags, scanners, and any secondary checks.</span></span></li>
+      <li><span class="num">3</span><span><strong>Getting to your post</strong><span class="d">Walking or taking the train or shuttle from security to where you clock in.</span></span></li>
+    </ol>
+    <p class="legal-note">Colorado law might treat security screening as paid time.</p>
+    <p class="secondary">Missed rest or meal breaks? The form asks about those as well.</p>
+  </section>
+
+  <section class="block" id="review" aria-labelledby="form-h">
+    <div class="form-head">
+      <h2 id="form-h" class="amber">Request a Case Review</h2>
+    </div>
+
+    <form id="screen-form" data-mode="single" novalidate>
+      <div class="q" data-field="worked_at_den">
+        <span class="qn" aria-hidden="true">1</span>
+        <div class="qbody">
+          <label class="ql" for="worked_at_den">Worked at a Denver Airport restaurant or shop?</label>
+          <select id="worked_at_den" name="worked_at_den">
+            <option value="">Select one</option>
+            <option value="Currently">Currently</option>
+            <option value="Previously">Previously</option>
+            <option value="No">No</option>
+          </select>
+          <p class="note" id="q1-note" hidden>This review is only for people who have worked at a Denver Airport restaurant or shop.</p>
+          <div class="err" role="alert"></div>
+        </div>
+      </div>
+
+      <div class="q" data-field="started_working">
+        <span class="qn" aria-hidden="true">2</span>
+        <div class="qbody">
+          <label class="ql" for="started_working">When did you start working there?</label>
+          <select id="started_working" name="started_working">
+            <option value="">Select one</option>
+            <option value="Within the last year">Within the last year</option>
+            <option value="Within the last 3 years">Within the last 3 years</option>
+            <option value="More than 3 years ago">More than 3 years ago</option>
+            <option value="Not sure">Not sure</option>
+          </select>
+          <div class="err" role="alert"></div>
+        </div>
+      </div>
+
+      <div class="q" data-field="pay_type">
+        <span class="qn" aria-hidden="true">3</span>
+        <div class="qbody">
+          <label class="ql" for="pay_type">How were you paid?</label>
+          <select id="pay_type" name="pay_type">
+            <option value="">Select one</option>
+            <option value="Hourly">By the hour</option>
+            <option value="Salary">Salary</option>
+            <option value="Other">Other</option>
+            <option value="Not sure">Not sure</option>
+          </select>
+          <div class="err" role="alert"></div>
+        </div>
+      </div>
+
+      <div class="q" data-field="unpaid_before_clockin">
+        <span class="qn" aria-hidden="true">4</span>
+        <div class="qbody">
+          <span class="ql" id="q4-label">Before clocking in, which of these did you do without pay?</span>
+          <details class="dd" data-placeholder="Select all that apply">
+            <summary aria-describedby="q4-label"><span class="dd-text">Select all that apply</span></summary>
+            <div class="dd-panel" role="group" aria-labelledby="q4-label">
+              <label for="q4-line"><input type="checkbox" name="unpaid_before_clockin" data-group="unpaid_before_clockin" id="q4-line" value="Wait in TSA line">Wait in TSA line</label>
+              <label for="q4-screen"><input type="checkbox" name="unpaid_before_clockin" data-group="unpaid_before_clockin" id="q4-screen" value="TSA screening">TSA screening</label>
+              <label for="q4-walk"><input type="checkbox" name="unpaid_before_clockin" data-group="unpaid_before_clockin" id="q4-walk" value="Walk from security to workplace">Walk from security to workplace</label>
+              <label for="q4-train"><input type="checkbox" name="unpaid_before_clockin" data-group="unpaid_before_clockin" id="q4-train" value="Airport train or shuttle after TSA">Airport train or shuttle after TSA</label>
+              <label for="q4-none"><input type="checkbox" name="unpaid_before_clockin" data-group="unpaid_before_clockin" data-exclusive="true" id="q4-none" value="None">None</label>
+              <label for="q4-ns"><input type="checkbox" name="unpaid_before_clockin" data-group="unpaid_before_clockin" data-exclusive="true" id="q4-ns" value="Not sure">Not sure</label>
+              <button type="button" class="dd-done">Done</button>
+            </div>
+          </details>
+          <div class="err" role="alert"></div>
+        </div>
+      </div>
+
+      <div class="q" data-field="break_issues">
+        <span class="qn" aria-hidden="true">5</span>
+        <div class="qbody">
+          <span class="ql" id="q5-label">Did you have any of these break issues?</span>
+          <details class="dd" data-placeholder="Select all that apply">
+            <summary aria-describedby="q5-label"><span class="dd-text">Select all that apply</span></summary>
+            <div class="dd-panel" role="group" aria-labelledby="q5-label">
+              <label for="q5-rest"><input type="checkbox" name="break_issues" data-group="break_issues" id="q5-rest" value="Missed or interrupted short rest breaks">Missed or interrupted rest breaks</label>
+              <label for="q5-meal"><input type="checkbox" name="break_issues" data-group="break_issues" id="q5-meal" value="Missed meal breaks or worked during meals">Missed meal breaks or worked during meals</label>
+              <label for="q5-deduct"><input type="checkbox" name="break_issues" data-group="break_issues" id="q5-deduct" value="Pay deducted for meal breaks I worked through">Pay deducted for meal breaks I worked through</label>
+              <label for="q5-none"><input type="checkbox" name="break_issues" data-group="break_issues" data-exclusive="true" id="q5-none" value="None">None</label>
+              <label for="q5-ns"><input type="checkbox" name="break_issues" data-group="break_issues" data-exclusive="true" id="q5-ns" value="Not sure">Not sure</label>
+              <button type="button" class="dd-done">Done</button>
+            </div>
+          </details>
+          <div class="err" role="alert"></div>
+        </div>
+      </div>
+
+      <div class="contact">
+        <h3>Your contact information</h3>
+        <div class="grid2">
+          <div class="field" data-field="full_name">
+            <label for="full_name">Full name</label>
+            <input class="txt" type="text" id="full_name" name="full_name" autocomplete="name">
+            <div class="err" role="alert"></div>
+          </div>
+          <div class="field" data-field="phone">
+            <label for="phone">Phone</label>
+            <input class="txt" type="tel" id="phone" name="phone" autocomplete="tel" inputmode="tel" placeholder="(303) 555-0123">
+            <div class="err" role="alert"></div>
+          </div>
+          <div class="field" data-field="email">
+            <label for="email">Email</label>
+            <input class="txt" type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="name@example.com">
+            <div class="err" role="alert"></div>
+          </div>
+          <div class="field" data-field="employer">
+            <label for="employer">Employer name</label>
+            <input class="txt" type="text" id="employer" name="employer" autocomplete="organization">
+            <label class="inline-check" for="employer_not_sure"><input type="checkbox" id="employer_not_sure" name="employer_not_sure">Not sure</label>
+            <div class="err" role="alert"></div>
+          </div>
+        </div>
+        <div class="hp" aria-hidden="true">
+          <label for="company_website">Leave this empty</label>
+          <input type="text" id="company_website" name="company_website" tabindex="-1" autocomplete="off">
+        </div>
+        <div data-field="consent">
+          <div class="consent">
+            <input type="checkbox" id="consent" name="consent">
+            <label for="consent" id="consent-text">I agree that Kennedy Law Firm may contact me by phone, text, or email about this request. Message and data rates may apply.</label>
+          </div>
+          <div class="err" role="alert"></div>
+        </div>
+        <p class="fine">See the <a id="privacy-link" href="#privacy-policy">Privacy Policy</a>. The firm will review your information and may contact you. Submitting this form does not create an attorney-client relationship or enroll you in a lawsuit.</p>
+      </div>
+
+      <div class="submit-row">
+        <button type="submit" class="btn" id="submit-btn"><span class="label">Request a Case Review</span></button>
+      </div>
+      <div class="form-status" id="form-status" role="status" aria-live="polite" hidden></div>
+    </form>
+
+    <div class="success" id="success" hidden>
+      <h3>Request received</h3>
+      <p>Kennedy Law Firm has your information. The firm will review it and may contact you by phone or email.</p>
+    </div>
+  </section>
+
+  <section class="block next" aria-labelledby="next-h">
+    <h2 id="next-h">What happens next</h2>
+    <ol>
+      <li>The firm reviews your answers.</li>
+      <li>If your situation may fit, the firm may call or email you to learn more.</li>
+      <li>Any representation would begin only after a separate conversation and written agreement.</li>
+    </ol>
+  </section>
+
+  <footer>
+    <p><strong>Attorney advertising.</strong> Galvin Kennedy is responsible for this page. Kennedy Law Firm, LLP, 2925 Richmond Ave., Ste. 1200, Houston, TX 77098. 713-425-6445.</p>
+    <p>This page describes possible claims and does not establish that any employer violated the law. Kennedy Law Firm is not affiliated with Denver International Airport, the Transportation Security Administration, or any employer.</p>
+    <p>Submitting this form does not create an attorney-client relationship and does not enroll you in any lawsuit.</p>
+    <p>Every case is different. Past results do not guarantee future results, and no one can promise you will recover money.</p>
+  </footer>
+</main>
+
+<script>
+/* ===== Lead delivery settings: fill these in before launch ===== */
+window.LP_CONFIG = {
+  variant: "businesslike",
+  campaign: "den-tsa-screening",
+  leadEndpoint: "",   /* HTTPS URL that accepts a JSON POST and answers 2xx after storing the lead */
+  privacyUrl: "",     /* Firm privacy-policy URL */
+  phone: "713-425-6445",
+  timeoutMs: 15000,
+  onConfirmed: null   /* optional: function to fire a Meta Pixel "Lead" event after confirmed receipt */
+};
+</script>
+<script>
+(function () {
+  "use strict";
+
+  var CONFIG = window.LP_CONFIG || {};
+  var form = document.getElementById("screen-form");
+  if (!form) return;
+  var stepMode = form.getAttribute("data-mode") === "steps";
+  var statusEl = document.getElementById("form-status");
+  var submitBtn = document.getElementById("submit-btn");
+  var successEl = document.getElementById("success");
+  var sending = false;
+
+  /* ---------- small helpers ---------- */
+  function $all(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+  function fieldBox(name) { return form.querySelector('[data-field="' + name + '"]'); }
+  function digits(s) { return (s || "").replace(/\D/g, ""); }
+
+  function setError(name, msg) {
+    var box = fieldBox(name);
+    if (!box) return;
+    var err = box.querySelector(".err");
+    box.classList.add("invalid");
+    if (err) err.textContent = msg;
+    $all("input, select, textarea", box).forEach(function (el) { el.setAttribute("aria-invalid", "true"); });
+  }
+  function clearError(name) {
+    var box = fieldBox(name);
+    if (!box) return;
+    var err = box.querySelector(".err");
+    box.classList.remove("invalid");
+    if (err) err.textContent = "";
+    $all("input, select, textarea", box).forEach(function (el) { el.removeAttribute("aria-invalid"); });
+  }
+
+  /* ---------- config markers for review ---------- */
+  var privacy = document.getElementById("privacy-link");
+  if (privacy) {
+    if (CONFIG.privacyUrl) {
+      privacy.setAttribute("href", CONFIG.privacyUrl);
+    } else {
+      privacy.setAttribute("href", "#privacy-policy");
+      var mark = document.createElement("span");
+      mark.className = "config-flag";
+      mark.textContent = "privacy URL not set";
+      privacy.parentNode.insertBefore(mark, privacy.nextSibling);
+    }
+  }
+
+  /* ---------- exclusive checkboxes ("None", "Not sure") ---------- */
+  $all('input[type="checkbox"][data-group]', form).forEach(function (cb) {
+    cb.addEventListener("change", function () {
+      var group = $all('input[data-group="' + cb.getAttribute("data-group") + '"]', form);
+      if (cb.checked) {
+        if (cb.getAttribute("data-exclusive") === "true") {
+          group.forEach(function (o) { if (o !== cb) o.checked = false; });
+        } else {
+          group.forEach(function (o) { if (o.getAttribute("data-exclusive") === "true") o.checked = false; });
+        }
+      }
+      clearError(cb.getAttribute("data-group"));
+    });
+  });
+
+  /* ---------- employer "Not sure" ---------- */
+  var employer = document.getElementById("employer");
+  var employerNS = document.getElementById("employer_not_sure");
+  if (employer && employerNS) {
+    employerNS.addEventListener("change", function () {
+      employer.disabled = employerNS.checked;
+      if (employerNS.checked) employer.value = "";
+      clearError("employer");
+    });
+  }
+
+  /* value of a radio group or a select, by name */
+  function val(name) {
+    var sel = form.querySelector('select[name="' + name + '"]');
+    if (sel) return sel.value;
+    var r = form.querySelector('input[name="' + name + '"]:checked');
+    return r ? r.value : "";
+  }
+
+  /* ---------- Q1 "No" note ---------- */
+  var q1Note = document.getElementById("q1-note");
+  $all('[name="worked_at_den"]', form).forEach(function (r) {
+    r.addEventListener("change", function () {
+      if (q1Note) q1Note.hidden = val("worked_at_den") !== "No";
+      clearError("worked_at_den");
+    });
+  });
+
+  /* ---------- placeholder styling for selects ---------- */
+  $all("select", form).forEach(function (s) {
+    function mark() { s.classList.toggle("empty", !s.value); }
+    s.addEventListener("change", mark); mark();
+  });
+
+  /* ---------- checkbox dropdowns ---------- */
+  var dds = $all("details.dd", form);
+  function ddRefresh(d) {
+    var picked = $all("input:checked", d).map(function (i) { return i.parentNode.textContent.trim(); });
+    var txt = d.querySelector(".dd-text");
+    if (!picked.length) { txt.textContent = d.getAttribute("data-placeholder"); d.classList.remove("has-value"); }
+    else { txt.textContent = picked.length <= 2 ? picked.join(", ") : picked.length + " selected"; d.classList.add("has-value"); }
+  }
+  dds.forEach(function (d) {
+    $all("input", d).forEach(function (i) { i.addEventListener("change", function () { ddRefresh(d); }); });
+    var done = d.querySelector(".dd-done");
+    if (done) done.addEventListener("click", function () { d.open = false; d.querySelector("summary").focus(); });
+    d.addEventListener("toggle", function () { if (d.open) dds.forEach(function (o) { if (o !== d) o.open = false; }); });
+    ddRefresh(d);
+  });
+  document.addEventListener("click", function (e) {
+    dds.forEach(function (d) { if (d.open && !d.contains(e.target)) d.open = false; });
+  });
+
+  /* clear errors as people fix things */
+  $all("input, select", form).forEach(function (el) {
+    var ev = (el.type === "radio" || el.type === "checkbox" || el.tagName === "SELECT") ? "change" : "input";
+    el.addEventListener(ev, function () {
+      var box = el.closest("[data-field]");
+      if (box && box.classList.contains("invalid")) clearError(box.getAttribute("data-field"));
+    });
+  });
+
+  /* ---------- validation ---------- */
+  var RULES = {
+    worked_at_den: function () {
+      var v = val("worked_at_den");
+      if (!v) return "Choose one.";
+      if (v === "No") return "This review is only for people who have worked at a Denver Airport restaurant or shop.";
+      return "";
+    },
+    started_working: function () {
+      return val("started_working") ? "" : "Choose one.";
+    },
+    pay_type: function () {
+      return val("pay_type") ? "" : "Choose one.";
+    },
+    unpaid_before_clockin: function () {
+      return form.querySelector('input[name="unpaid_before_clockin"]:checked') ? "" : "Choose at least one, or None or Not sure.";
+    },
+    break_issues: function () {
+      return form.querySelector('input[name="break_issues"]:checked') ? "" : "Choose at least one, or None or Not sure.";
+    },
+    full_name: function () {
+      var v = (form.elements["full_name"].value || "").trim();
+      return (v.length >= 2 && /[A-Za-zÀ-ɏ]/.test(v)) ? "" : "Enter your full name.";
+    },
+    phone: function () {
+      var d = digits(form.elements["phone"].value);
+      if (d.length === 11 && d.charAt(0) === "1") d = d.slice(1);
+      return d.length === 10 ? "" : "Enter a 10-digit phone number.";
+    },
+    email: function () {
+      var v = (form.elements["email"].value || "").trim();
+      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) ? "" : "Enter an email address like name@example.com.";
+    },
+    employer: function () {
+      if (employerNS && employerNS.checked) return "";
+      return (employer.value || "").trim().length >= 2 ? "" : "Enter your employer's name, or check Not sure.";
+    },
+    consent: function () {
+      return form.elements["consent"].checked ? "" : "Check this box so the firm can contact you.";
+    }
+  };
+
+  function validate(names) {
+    var firstBad = null;
+    names.forEach(function (n) {
+      var msg = RULES[n] ? RULES[n]() : "";
+      if (msg) { setError(n, msg); if (!firstBad) firstBad = n; } else { clearError(n); }
+    });
+    return firstBad;
+  }
+  function fieldsIn(container) {
+    var boxes = $all("[data-field]", container);
+    if (container.hasAttribute("data-field")) boxes.unshift(container);
+    return boxes.map(function (b) { return b.getAttribute("data-field"); });
+  }
+  function focusField(name) {
+    var box = fieldBox(name);
+    if (!box) return;
+    var dd = box.querySelector("details.dd");
+    var el = dd ? dd.querySelector("summary") : box.querySelector("input:not([disabled]), select");
+    if (el) el.focus({ preventScroll: true });
+    box.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "center" });
+  }
+
+  /* ---------- stepper (friendly version) ---------- */
+  var steps = $all("[data-step]", form);
+  var current = 0;
+  var progressText = document.getElementById("progress-text");
+  var progressBar = document.getElementById("progress-bar");
+  var backBtn = document.getElementById("back-btn");
+  var nextBtn = document.getElementById("next-btn");
+
+  function showStep(i, focus) {
+    current = i;
+    steps.forEach(function (s, k) { s.hidden = k !== i; });
+    var total = steps.length;
+    if (progressText) progressText.textContent = i < total - 1 ? ("Question " + (i + 1) + " of " + (total - 1)) : "Last step: how to reach you";
+    if (progressBar) progressBar.style.width = Math.round(((i + 1) / total) * 100) + "%";
+    if (backBtn) backBtn.hidden = i === 0;
+    if (nextBtn) nextBtn.hidden = i === total - 1;
+    if (submitBtn) submitBtn.hidden = i !== total - 1;
+    if (focus) {
+      var h = steps[i].querySelector("legend, h3");
+      if (h) { h.setAttribute("tabindex", "-1"); h.focus({ preventScroll: true }); }
+    }
+  }
+  if (stepMode && steps.length) {
+    showStep(0, false);
+    nextBtn.addEventListener("click", function () {
+      var bad = validate(fieldsIn(steps[current]));
+      if (bad) { focusField(bad); return; }
+      showStep(current + 1, true);
+    });
+    backBtn.addEventListener("click", function () { showStep(current - 1, true); });
+  }
+
+  /* ---------- CTA buttons scroll to form ---------- */
+  $all("[data-goto-form]").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+      var target = document.getElementById("review");
+      target.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+      var first = form.querySelector("[data-step]:not([hidden]) input, select, input");
+      if (first) setTimeout(function () { first.focus({ preventScroll: true }); }, 350);
+    });
+  });
+
+  /* ---------- payload ---------- */
+  function checkedValues(name) {
+    return $all('input[name="' + name + '"]:checked', form).map(function (i) { return i.value; });
+  }
+  function buildPayload() {
+    var params = {};
+    try {
+      var q = new URLSearchParams(window.location.search);
+      ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "fbclid"].forEach(function (k) {
+        if (q.get(k)) params[k] = q.get(k);
+      });
+    } catch (e) { /* no query string available */ }
+    return {
+      campaign: CONFIG.campaign || "den-tsa-screening",
+      page_variant: CONFIG.variant || "",
+      submitted_at: new Date().toISOString(),
+      answers: {
+        worked_at_den: val("worked_at_den"),
+        started_working: val("started_working"),
+        pay_type: val("pay_type"),
+        unpaid_before_clockin: checkedValues("unpaid_before_clockin"),
+        break_issues: checkedValues("break_issues")
+      },
+      contact: {
+        full_name: form.elements["full_name"].value.trim(),
+        phone: digits(form.elements["phone"].value),
+        email: form.elements["email"].value.trim(),
+        employer: employerNS && employerNS.checked ? "Not sure" : employer.value.trim()
+      },
+      consent: {
+        agreed: form.elements["consent"].checked,
+        text: (document.getElementById("consent-text") || {}).textContent || ""
+      },
+      tracking: params,
+      page_url: window.location.href.split("?")[0]
+    };
+  }
+
+  /* ---------- status ---------- */
+  function showStatus(kind, html) {
+    statusEl.className = "form-status " + kind;
+    statusEl.innerHTML = html;
+    statusEl.hidden = false;
+  }
+  function setSending(on) {
+    sending = on;
+    submitBtn.disabled = on;
+    submitBtn.setAttribute("aria-busy", on ? "true" : "false");
+    submitBtn.querySelector(".label").textContent = on ? "Sending…" : "Request a Case Review";
+  }
+  var phoneText = CONFIG.phone || "";
+  function callLine() {
+    return phoneText ? " You can also call the firm at <strong>" + phoneText + "</strong>." : "";
+  }
+
+  /* ---------- submit ---------- */
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (sending) return;
+    statusEl.hidden = true;
+
+    var bad = validate(Object.keys(RULES));
+    if (bad) {
+      if (stepMode) {
+        var box = fieldBox(bad);
+        var idx = steps.indexOf(box.closest("[data-step]"));
+        if (idx !== current) showStep(idx, false);
+      }
+      showStatus("error", "Please fix the highlighted answer" + (stepMode ? "." : "s above."));
+      focusField(bad);
+      return;
+    }
+
+    // honeypot: bots fill hidden fields; never show success to them
+    var hp = form.elements["company_website"];
+    if (hp && hp.value) { return; }
+
+    if (!CONFIG.leadEndpoint) {
+      showStatus("error", "Online requests are not connected yet, so nothing was sent." + callLine());
+      if (window.console) console.warn("LP_CONFIG.leadEndpoint is empty: set it to the lead-delivery URL.");
+      return;
+    }
+
+    setSending(true);
+    var ctrl = ("AbortController" in window) ? new AbortController() : null;
+    var timer = setTimeout(function () { if (ctrl) ctrl.abort(); }, CONFIG.timeoutMs || 15000);
+
+    fetch(CONFIG.leadEndpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(buildPayload()),
+      signal: ctrl ? ctrl.signal : undefined
+    }).then(function (res) {
+      if (!res.ok) throw new Error("HTTP " + res.status);
+      return res.text().then(function (t) {
+        var data = null;
+        try { data = t ? JSON.parse(t) : null; } catch (err) { data = null; }
+        if (data && data.ok === false) throw new Error("Rejected by server");
+        return data;
+      });
+    }).then(function () {
+      clearTimeout(timer);
+      form.hidden = true;
+      var intro = document.getElementById("form-intro");
+      if (intro) intro.hidden = true;
+      successEl.hidden = false;
+      var h = successEl.querySelector("h2, h3");
+      if (h) { h.setAttribute("tabindex", "-1"); h.focus(); }
+      if (typeof CONFIG.onConfirmed === "function") { try { CONFIG.onConfirmed(); } catch (err) { /* tracking must not break the page */ } }
+    }).catch(function () {
+      clearTimeout(timer);
+      setSending(false);
+      showStatus("error", "Your request could not be confirmed as sent, so please try again." + callLine());
+    });
+  });
+})();
+
+</script>
+</body>
+</html>
